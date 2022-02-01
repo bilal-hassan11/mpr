@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Directory</title>
+    <title>{{ @$title }} || MPR</title>
 
     <!-- <link rel="icon" href="img/favicon.png" type="image/png"> -->
     <!-- Bootstrap CSS -->
@@ -81,7 +81,7 @@
                     <div class="header_right d-flex justify-content-between align-items-center">
                         <div class="header_notification_warp d-flex align-items-center">
                             <li>
-                                <a class="bell_notification_clicker" href="#"> <img src="img/icon/bell.svg" alt="">
+                                <a class="bell_notification_clicker" href="#"> <img src="{{ asset('user_assets/img/icon/bell.svg') }}" alt="">
                                     <span>04</span>
                                 </a>
                                 <!-- Menu_NOtification_Wrap  -->
@@ -160,11 +160,11 @@
                             <!--/ Menu_NOtification_Wrap  -->
                             </li>
                             <li>
-                                <a class="CHATBOX_open" href="#"> <img src="img/icon/msg.svg" alt="">  <span>01</span> </a>
+                                <a class="CHATBOX_open" href="#"> <img src="{{ asset('user_assets/img/icon/msg.svg') }}" alt="">  <span>01</span> </a>
                             </li>
                         </div>
                         <div class="profile_info">
-                            <img src="img/client_img.png" alt="#">
+                            <img src="{{ asset('user_assets/img/client_img.png') }}" alt="#">
                             <div class="profile_info_iner">
                                 <div class="profile_author_name">
                                     <p>Neurologist </p>
@@ -191,12 +191,12 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="dashboard_header_title">
-                                    <h3> Directory Dashboard</h3>
+                                    <h3> {{ $page_title }}</h3>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="dashboard_breadcam text-right">
-                                    <p><a href="index.html">Dashboard</a> <i class="fas fa-caret-right"></i>   Address Book</p>
+                                    <p><a href="index.html">{{ @$page_title }}</a> <i class="fas fa-caret-right"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +229,7 @@
                 <li>
                     <a href="#">
                         <div class="member_thumb">
-                         <img src="img/staf/1.png" alt="">
+                         <img src="{{ asset('user_assets/img/staf/1.png') }}" alt="">
                         </div>
                     </a>
                 </li>
