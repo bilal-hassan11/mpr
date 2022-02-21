@@ -1,0 +1,956 @@
+
+
+$(document).ready(function () {
+    $('#search_machine').val('');
+    $("#password").keyup(function()
+    {
+        $('#password_strngth').show();
+        var password = this.value;
+
+        // for checking Capital Letters in a password...
+        if (password.match(/[A-Z]/))
+        {
+            $('#password_capital').hide();
+            $('#btn-user-register').removeAttr('disabled');          
+        }
+        else
+        {
+            $('#password_capital').show();  
+            $('#btn-user-register').attr('disabled', 'disabled');          
+        }
+
+        // for checking Digits in a password...
+        if (password.match(/\d/))
+        {
+            $('#password_digit').hide();
+            $('#btn-user-register').removeAttr('disabled');          
+        }
+        else
+        {
+            $('#password_digit').show();            
+            $('#btn-user-register').attr('disabled', 'disabled');          
+        }
+
+        // for checking Special Characters in a password...
+        if (password.match(/[^\w]/))
+        {
+            $('#password_special').hide();
+            $('#btn-user-register').removeAttr('disabled');          
+        }
+        else
+        {
+            $('#password_special').show();            
+            $('#btn-user-register').attr('disabled', 'disabled');          
+        }
+    });
+
+
+    $("#mac_madIn").keypress(function(event)
+    {
+        // Accepts only Alphabetic Characters.
+        var inputValue = event.charCode;
+        if(!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0))
+        {
+            event.preventDefault();
+        }
+    });
+
+
+
+    $(function () {
+        $('.setEmail').click(function () {
+            var title = "Forgot Password";
+            var footer = "";
+            var body = "";
+            var myvalues = $('.frgpaswd').find('input').attr('name','csrf_test_name').val();
+            var myvaluesc = $('.frgpaswd').find('input').attr('name');
+            console.log(myvalues);
+            body+='<div class="row">';
+            body+='<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 eiip">';
+            body+='<form action="'+surl+'user/resendLink" method="post"><div class="form-group">';
+            body+='<label class="required"></label>';
+            body+='<input type="text" name="email" class="form-control" placeholder="Enter your Email Address" id="userEmail" class="fwdth">';
+            body+='<input type="hidden" name="'+myvaluesc+'" value="'+myvalues+'">';
+            body+='</div>';
+            body+='<div class="form-group" id="cofd"></div>';
+            body+= '<button type="submit" class="custom-button lgnxk thmmacbtn"  data-loading-text="Loading..." autocomplete="off">Send Email</button>';
+            body+='</form></div>';
+            body+='</div>';
+            $('#thmBody').addClass('eiip');
+            $('#thmtitle').html(title);
+            $('#thmfooter').html(footer);
+            $('#thmBody').html(body);
+            $('#thmModl').modal('show');
+        })
+    });
+
+
+    $(function(){
+        $('body').on("click",'button.crejpst',function(){
+            var $btn = $(this).button('loading');
+            var email =  $('#email').val();
+            var password =  $('#password').val();
+            $('#password').val();
+            $(".skzSinrXJA").html("<img width='52px' src='" + burl + "/public/assets/images/shakzee.gif' class='img-fluid' />");
+            if (email == "" || password == "")
+            {
+                $('.fdrsgn').html('Email and password are required fields.');
+                $(".skzSinrXJA").html('');
+                //$btn.button('reset');
+            }
+            else
+            {
+                $.post({
+                    url:surl+'user/userLogin',
+                    type:'post',
+                    data:{email:email,password:password},
+                    success:function(mydata){
+                        console.log(mydata);
+                        var newdata = JSON.parse(mydata);
+                        if (newdata.return == true){
+                            window.location.replace(surl+"user");
+                            $(".skzSinrXJA").html('');
+                        }
+                        else if(newdata.return == false){
+                            $('.fdrsgn').html(alert_erro('alert-info',newdata.message));
+                            $(".skzSinrXJA").html('');
+                            //$btn.button('reset');
+                        }
+                    },
+                    error:function(){
+                        $('.fdrsgn').text('Something went wrong');
+                       // $btn.button('reset');
+                        $(".skzSinrXJA").html('');
+                    }
+
+                })
+            }
+
+        });
+    });
+
+    $(function () {
+        $('#chgPs').click(function () {
+            var title = "Change Password";
+            var footer = "";
+            var body = "";
+            footer+='<button type="button" class="btn btn-default usrbtnpro" data-dismiss="modal">Close</button>';
+            footer+='<button type="button" class="btn btn-primary usrbtnpro" id="chnpss"  data-loading-text="Loading..." autocomplete="off">Change Password</button>';
+            body+='<div class="row">';
+                body+='<div class="col-md-12 eiip">';
+                    body+='<div class="form-group eyConPassSkz" style="margin-bottom: 2rem;">';
+                        body+='<input type="password" placeholder="Old Password" id="oldPass" class="form-control skzSPass" style="margin-bottom: 5px;">';
+                        body+='<input type="hidden" id="oldPassError" value="">';
+                    body+='</div>';
+                    
+                    body+='<div class="form-group eyConPassSkz" style="margin-bottom: 2rem;">';
+                        body+='<input type="password" placeholder="New Password" id="newPss" class="form-control skzSPassCon" style="margin-bottom: 5px;">';
+                        body+=' <div id="password_strngth" style="display: none;">\
+                                    <small><b>The password must contain:</b><br></small>\
+                                    <small id="password_capital" style="color: #dc3545;">* At least 1 uppercase letters.<br></small>\
+                                    <small id="password_digit" style="color: #dc3545;">* At least 1 digit.<br></small>\
+                                    <small id="password_special" style="color: #dc3545;">* At least 1 special character.<br></small>\
+                                    <small id="password_length" style="color: #dc3545;">* At least 8 characters.<br></small>\
+                                </div>';
+                    body+='</div>';
+                    
+                    body+='<div class="form-group eyConPassSkz" style="margin-bottom: 2rem;">';
+                        body+='<input type="password" placeholder="Confirm Password" id="confiPss" class="form-control skzSPassThr" style="margin-bottom: 5px;">';
+                    body+='</div>';
+                    
+                    body+='<div class="form-group" id="cofd"></div>';                
+                body+='</div>';
+            body+='</div>';
+            $('#thmBody').addClass('eiip');
+            $('#thmtitle').html(title);
+            $('#thmfooter').html(footer);
+            $('#thmBody').html(body);
+            $('#thmModl').modal('show');
+        })
+    });
+
+    $(function () 
+    {   // Arsalan Alam Code. Dated: 30-07-2019
+        $('body').on('keyup','input#newPss',function () 
+        {
+            var password = this.value;
+            
+            // for Showing and Hiding Password Verification Div....
+            if (password.match(/[A-Z]/) && password.match(/\d/) && password.match(/[^\w]/) && password.length >= 8)
+            {
+                $('#password_strngth').hide();
+                $('#chnpss').removeAttr('disabled');          
+            }
+            else
+            {
+                $('#password_strngth').show();
+                $('#chnpss').attr('disabled', 'disabled');          
+            }            
+
+            // for checking Capital Letters in a password...
+            if (password.match(/[A-Z]/))
+            {
+                $('#password_capital').hide();
+            }
+            else
+            {
+                $('#password_capital').show();  
+            }
+
+            // for checking Digits in a password...
+            if (password.match(/\d/))
+            {
+                $('#password_digit').hide();
+            }
+            else
+            {
+                $('#password_digit').show();            
+            }
+
+            // for checking Special Characters in a password...
+            if (password.match(/[^\w]/))
+            {
+                $('#password_special').hide();
+            }
+            else
+            {
+                $('#password_special').show();            
+            }
+
+            // for checking Special Characters in a password...
+            if (password.length >= 8)
+            {
+                $('#password_length').hide();
+            }
+            else
+            {
+                $('#password_length').show();            
+            }
+        })
+    });
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 700;  //time in ms (5 seconds)
+    //on keyup, start the countdown
+    $('body').on('keyup','#oldPass',function () {
+        clearTimeout(typingTimer);
+        if (jQuery.trim($('#oldPass').val())) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    });
+
+    //user is "finished typing," do something
+    function doneTyping () {
+        var oldPassword = jQuery.trim($('#oldPass').val());
+        console.log(oldPassword);
+        $.ajax({
+            url: surl+'user/checkOldPassword',
+            type:'post',
+            data: {
+                'oldPassword' : oldPassword
+            },
+            success:function(mydata) {
+                var obje = JSON.parse(mydata);
+                console.log(obje.return)
+                if (obje.return){
+                    $('#oldPass').attr('data-old_id',1);
+                    $('#oldPassError').val(1);
+                    $('#oldPass').addClass('brgren');
+                    $('#oldPass').removeClass('brred');
+                    $('#cofd').text('');                    
+                }
+                else if(obje.return == false){
+                    $('#oldPass').attr('data-old_id',0);
+                    $('#oldPassError').val(0);
+                    $('#oldPass').removeClass('brgren');
+                    $('#oldPass').addClass('brred');
+                    $('#cofd').text('Old password is invalid.');
+                }
+                else{
+                    console.log('something wrong')
+                }
+                //console.log(mydata);
+            },
+            error: function(errorThrown){
+                //console.log(errorThrown);
+            }
+        });
+    }
+
+
+    $(function () {
+        $('body').on('click','button#chnpss',function () {
+            var oldPass = $('#oldPass').val();
+            var newPass = $('#newPss').val();
+            var confpass = $('#confiPss').val();
+            var $btn = $('#chnpss').button('loading');
+            if(oldPass == ""){
+                $('#cofd').text('Please enter Old Password.');
+                $btn.button('reset')
+
+            }
+            else if(newPass == "" || confpass == ""){
+                $('#cofd').text('Please enter New Password and Confirm Password.');
+                $btn.button('reset')
+
+            }
+            else if(newPass != confpass){
+                $('#cofd').html('Passwords not matched');
+                $btn.button('reset')
+            }
+            else if(newPass == confpass && $('#oldPassError').val() != 1){
+                $('#cofd').html('Old password is invalid.');
+                $btn.button('reset')
+            }
+            else if(newPass.length <= 4)
+            {
+                $('#cofd').html('The password must be more than 4 and less than 20 characters long.');
+            }
+            else{
+                $.ajax({
+                    url: surl+'user/updatepassword',
+                    type:'post',
+                    data: {
+                        'newPass' : newPass,
+                        'confpass' : confpass,
+                    },
+                    success:function(mydata) {
+                        var obje = JSON.parse(mydata);
+                        console.log(obje.return)
+                        if (obje.return){
+                            $('#cofd').text("You have successfully changed your password.");
+                            setTimeout(function () {
+                                $('#thmModl').modal('hide');
+                            },2000)
+                        }
+                        else if(obje.return == false){
+                            $('#cofd').text(obje.message);
+                            $btn.button('reset')
+
+                        }
+                        else{
+                            $('#cofd').text(obje.message);
+                            $btn.button('reset')
+                        }
+                    },
+                    error: function(errorThrown){
+                        $('#cofd').text("Something went wong.");
+                        $btn.button('reset')
+                    }
+                });
+            }
+
+        })
+    });
+
+
+    $("body").on('change','.slzlgprv',function() {
+        readSkzURL(this);
+    });
+
+
+
+
+
+
+
+
+    $(function () {
+        $('body').on('click','a.slcMdl',function () {
+            var xpxi = $(this).data('id');
+            //  var mdyy =  $('#modYear').val();
+            $('.slcMdl').removeClass('slctskz');
+            $(this).addClass('slctskz');
+            var myOptions = "";
+
+
+        })
+    });
+
+
+
+    if($('#prevYtbLRU').hasClass('prevYtbLRU')){
+        getYoutubeURL($('#prevYtbLRU').data('text'))
+    }
+
+    $("#popoverButton").popover({
+        animation: false,
+        html : true,
+        content: function () {
+            return $('#popoverContent');
+        }
+    }).on('hide.bs.popover', function () {
+        // Move the content back to the containing div before it gets destroyed
+        $("#popoverContentContainer").append($("#popoverContent"));
+    });
+
+    $('#closeButton').click( function() {
+        // Hide the popover
+        $('#popoverButton').popover('hide')
+    });
+    
+
+
+
+
+    $('body').on("click",'a.skzbtdtfld',function(){
+        var rmvrow = $(this).data('text');
+        $('.dletentlwex'+rmvrow).remove();
+    });
+
+
+    $(function(){
+        $('body').on('click','a.dropListng',function(){
+            var dtxt = $(this).data('text');
+            var di = $(this).data('id');
+            var m_title = "";
+            var m_body = "";
+            var m_footer = ""
+            m_title+= "Delete Listing";
+            m_body+= "<h3>Are you sure you want to <strong class='dltshop_w'>DELETE</strong> this Listing...? <br> No data can be recovered.</h3>";
+            m_body+='<p></p><div class="fdrsgn"></div>'
+            m_footer+= '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>';
+            m_footer+='<a href="'+dtxt+'"  class="btn btn-primary cn_dc usrbtnpro">Delete Listing</a>';
+
+            $('#thmtitle').text(m_title);
+            $('#thmBody').html(m_body);
+            $('#thmfooter').html(m_footer);
+
+            $('#thmModl').modal('show');
+
+        });
+    });
+
+
+    var str = $('.ovfhid').text();
+    var newtrim = $.trim(str);
+    $('.ovfhid').text(newtrim);
+    $('.richtxt').find('a').contents().unwrap();
+
+
+
+    $(function () {
+        $('.skzlogin').click(function () {
+            var title = "Login";
+            var footer = "";
+            var body = "";
+            footer+=' <button type="button" class="btn btn-default skzlngsh" data-dismiss="modal">Close</button>';
+            footer+= ' <button type="button" class="btn btn-primary skzlngsh  thmmacbtn" id="loginNow"  data-loading-text="Loading..." autocomplete="off">Login</button>';
+            body+='<div class="row">';
+            body+='<div class="col-md-12 eiip">';
+            body+='<div class="form-group">';
+            body+='<input type="text" class="form-control fwdth lgemail" placeholder="Email" >';
+            body+='</div>';
+            body+='<div class="form-group eyConPassSkz">';
+            body+=' <i class="fal fa-eye pull-right eyPassSkz"></i>';
+            body+='<input type="password" class="form-control fwdth lgpassword skzSPass" placeholder="Password" id="lgpassword">';
+            body+='</div>';
+            body+='<div class="form-group" id="cofd"></div>';
+            body+='</div>';
+            body+='</div>';
+            body+='<p>Don\'t have an account..? <a href="'+surl+'register">Sign up</a></p>';
+            $('#thmBody').addClass('eiip');
+            $('#thmtitle').html(title);
+            $('#thmfooter').html(footer);
+            $('#thmBody').html(body);
+            $('#thmModl').modal('show');
+        })
+    });
+
+    $(function () {
+        $('body').on('keypress','input#lgpassword',function(event) {
+            var keyCode = (event.keyCode ? event.keyCode : event.which);
+            if (keyCode == 13) {
+                $('button#loginNow').trigger('click');
+            }
+        })
+    });
+
+
+
+
+
+
+
+    $(function(){
+        $('ul.pr_rtwlg li').mouseenter(function(){
+            var $lis = $(this).siblings("li").addBack();
+            var id   = $(this).index();
+
+            $lis.removeClass("starhover");
+            $lis.slice(0, id + 1).addClass("starhover");
+        });
+    })
+
+    $(function(){
+        $('ul.sh_rt li').mouseenter(function(){
+            var $lis = $(this).siblings("li").addBack();
+            var id   = $(this).index();
+
+            $lis.removeClass("starhover");
+            $lis.slice(0, id + 1).addClass("starhover");
+        });
+    });
+
+    $(function(){
+        $('span.rats span').mouseenter(function(){
+            var $lis = $(this).siblings("span").addBack();
+            var id   = $(this).index();
+
+            $lis.removeClass("starhover");
+            $lis.slice(0, id + 1).addClass("starhover");
+        });
+    });
+
+
+
+
+
+    $(function(){
+        $('body').on('mouseenter','ul.curnt_rew li',function(){
+            var $lis = $(this).siblings("li").addBack();
+            var id   = $(this).index();
+            $lis.removeClass("starhover");
+            $lis.slice(0, id + 1).addClass("starhover");
+        })
+    });
+
+
+
+
+
+
+    $(function(){
+        $('.skzcls').click(function(){
+            var myclass = $(this).data('text');
+            $('.'+myclass).remove();
+            $(this).remove();
+            $('#rmflt').submit();
+        });
+    });
+
+
+    $(window).scroll(function() {
+        //console.log($(this).scrollTop());
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').click(function() {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop : 0                       // Scroll to top of body
+        }, 500);
+    });
+
+
+
+    // Add smooth scrolling to all links
+    $(".skzfctsub").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+            //console.log(hash);
+            element = hash;
+            skzId = element.substring(2);
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                $('#'+skzId).addClass('sendbydiv');
+                setTimeout(function () {
+                    $('#'+skzId).removeClass('sendbydiv');
+                }, 2000);
+                //console.log('ok');
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+        } // End if
+    });
+
+
+
+
+    $(function () {
+       $('.quote_btn').click(function () {
+           $(this).find('.user_num').css('width','100%');
+           $(this).find('small').remove();
+       });
+    });
+
+
+    $('body').on('keypress','input.skzDyFList',function () {
+        if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'');
+    });
+
+
+    $('body').on('keypress','input.txtOnly',function (e) {
+        var key = e.keyCode;
+        if (key >= 48 && key <= 57) {
+            e.preventDefault();
+        }
+    });
+    
+
+    $('#step2Nextskz').click(function () {
+        $('#stepTwoVal').submit();
+    });
+
+
+
+
+
+    $('#btn-user-register').on('click', function()
+    {
+        if ($(".invalid-feedback")[0])
+        {
+            $('.invalid-feedback').hide();
+        } 
+        else 
+        {
+            // Do something if class does not exist
+        }
+    });
+
+
+
+
+
+    $('body').on("click",'a.MYRemDoc',function(e){
+        var $el = $('#step2frsdoc');
+        $el.wrap('<form>').closest('form').get(0).reset();
+        $el.unwrap();
+        $('#blah').empty();
+    });
+
+
+    $('#thmModl').on('hidden.bs.modal', function (e) {
+        $('#thmBody').empty();
+    });
+
+
+
+
+
+   $(function () {
+       $('#password').keydown(function(event){
+           var keyCode = (event.keyCode ? event.keyCode : event.which);
+           if (keyCode == 13) {
+               $('.crejpst').trigger('click');
+           }
+       });
+   });
+
+    $('body').on("click",'.eyPassSkz',function(){
+        if ('password' == $('.skzSPass').attr('type')) {
+            $('.skzSPass').prop('type', 'text');
+        }
+        else{
+            $('.skzSPass').prop('type', 'password');
+        }
+    });
+
+
+
+
+
+/*Edit listing here*/
+
+
+    $('#chtUPr').submit(function(e){
+        var mesgkllr = jQuery.trim($('#MyMesgkr').val());
+        if (mesgkllr == '') {
+            e.stopImmediatePropagation();
+        }
+    });
+    $(document).on('click','#chsbbtn',function(e){
+
+        var mesgkllr = jQuery.trim($('#MyMesgkr').val());
+        if (mesgkllr == '') {
+            e.stopImmediatePropagation();
+            return false;
+        }
+
+    });
+
+
+    $(function () {
+        $('#MyMesgkr').keypress(function(event){
+            var keyCode = (event.keyCode ? event.keyCode : event.which);
+            if (keyCode == 13) {
+                var mesgkllr = jQuery.trim($('#MyMesgkr').val());
+                if (mesgkllr == '') {
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+    $(function () {
+        $('body').on('click','a#adEmail',function () {
+            /*        $('.').click(function () {*/
+            var title = "Add Email";
+            var footer = "";
+            var body = "";
+            footer+=' <button type="button" class="btn btn-default usrbtnpro" data-dismiss="modal">Close</button>';
+            footer+= ' <button type="button" class="btn btn-primary usrbtnpro" id="conAddEmail"  data-loading-text="Loading..." autocomplete="off">Add Now</button>';
+            body+='<div class="row">';
+            body+='<div class="col-md-12 eiip">';
+
+            body+='<div class="form-group">';
+            body+='<label>Your Email <span class="red">*</span></label>';
+            body+='<input type="text" placeholder="New Email"  id="skznewEmail" class="form-control">';
+            body+='</div>';
+            body+='<div class="form-group" id="cofd"></div>';
+            body+='</div>';
+            body+='</div>';
+
+            $('#thmBody').addClass('eiip');
+            $('#thmtitle').html(title);
+            $('#thmfooter').html(footer);
+            $('#thmBody').html(body);
+            $('#thmModl').modal('show');
+        })
+    });
+    $(function () {
+        $('body').on('click','a.editEmail',function () {
+            var xte = $(this).data('text');
+            var di = $(this).data('id');
+
+            var title = "Update Email";
+            var footer = "";
+            var body = "";
+            footer+=' <button type="button" class="btn btn-default usrbtnpro" data-dismiss="modal">Close</button>';
+            footer+= ' <button type="button" class="btn btn-primary usrbtnpro" id="conUptEmail"  data-loading-text="Loading..." autocomplete="off">Update</button>';
+            body+='<div class="row">';
+            body+='<div class="col-md-12 eiip">';
+
+            body+='<div class="form-group">';
+            body+='<label>Your Email <span class="red">*</span></label>';
+            body+='<input type="text" value="'+xte+'" placeholder="New Email"  id="skznewEmail" class="form-control">';
+            body+='<input type="hidden" value="'+di+'"   id="skzDiemail">';
+            body+='</div>';
+            body+='<div class="form-group" id="cofd"></div>';
+            body+='</div>';
+            body+='</div>';
+
+            $('#thmBody').addClass('eiip');
+            $('#thmtitle').html(title);
+            $('#thmfooter').html(footer);
+            $('#thmBody').html(body);
+            $('#thmModl').modal('show');
+        })
+    });
+
+
+
+
+   $('.skzfpnumb').click(function(){
+       var phone = $(this).data('text');
+       var enwfield = '';
+       $('.skzpncont').empty();
+       enwfield+='<button class="btn btn-primary quote_btn skzbtn skzfpnumb" data-text="'+phone+'">';
+       enwfield+=' <span class="fas fa-phone text-left"></span> ';
+       enwfield+= phone;
+       enwfield+='<br>';
+       enwfield+='</button>';
+        $('.skzpncont').html(enwfield);
+   });
+
+   $('#ffjQur').click(function () {
+      console.log('working..');
+       $("#skzDocumFDx").submit();
+   });
+
+
+
+
+
+
+
+    $(function () {
+        $('#skzsbmtMchn').click(function () {
+            //var sbmtURL = $(this).data('text');
+            $(this).addClass('disabled');
+            $(this).attr('disabled','disabled');
+            //console.log(sbmtURL);
+            //window.location.href = sbmtURL;
+            //$(this).attr('','','');
+        })
+    })
+
+
+
+	$(function () {
+			$('.mac_purpose').change(function () {
+				var prpos  = $('.mac_purpose').val();
+				if (prpos == 'rent') {
+					$('.prday').text('per week');
+				}
+				else{
+					$('.prday').text('');
+				}
+			});
+	});
+
+	$('#rsbtnzks').click(function () {
+		var frmVal = $('#min_price').val();
+		var toVal = $('#max_price').val();
+		if (frmVal !="" && toVal != "") {
+			$('.prfltfrm').submit();
+		}
+
+	});
+
+
+
+
+
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function(){
+    if($('#skzemrslt').hasClass('alert-info')){
+        $('#skzcfmu').remove();
+    }
+});
+
+/*$("#cat").val(['Select Industry':'']);*/
+  $('#skzcalculator').click(function () {
+	  var skzamount = $.trim($('#amountskz').val());
+	  var skzcurrency = $('#skzcurrency').text();
+
+	  if (skzamount !='' && skzcurrency != '') {
+		  $('.rslblw').empty();
+          $('.dailyprofit').text(skzamount*0.38/100+ ' ' +skzcurrency+'*');
+		  $('.skztamnt').text(skzamount*8.5/100+ ' ' +skzcurrency+'*');
+	  }
+	  else{
+	  	$('.rslblw').html(alert_erro('alert-info','Please add amount before calculate.'));
+
+	  }
+
+  });
+});//ready
+
+
+
+function getYoutubeURL(url){
+    var skzYoutubeUrl= url;
+    //var url = $(this).attr("href")
+    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var myYbtURL = '';
+    var match = skzYoutubeUrl.match(regExp);
+    if (match && match[2].length == 11) {
+        var id = match[2];
+        //var path = 'http://img.youtube.com/vi/'+id+'/0.jpg';
+        myYbtURL+='<img src="http://img.youtube.com/vi/'+id+'/0.jpg" class="img-fluid skzOYTurl brdash">';
+        $('.prevYtbLRU').html(myYbtURL);
+        //$(this).css('background-image', 'url(' + path + ')');
+    }
+}
+
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            $('#blah').html('<img src="'+e.target.result+'" class="img-fluid">');
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+
+
+
+
+
+function alert_erro(myclass,myerror) {
+    var alert  = "";
+    alert+='<div class="alert '+myclass+' alert-dismissible fade show" role="alert">';
+    alert+= '<strong>'+myerror+'</strong>';
+    alert+='<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    alert+='<span aria-hidden="true">&times;</span>';
+    alert+='</button>';
+    alert+='</div>';
+    return alert;
+
+}
+
+function validemail(email)
+{
+    var log_emailpattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    var valid_logemail = log_emailpattern.test(email);
+    return valid_logemail;
+}
+
+
+function AddImage(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+            $('#blah').html('<img src="'+e.target.result+'" class="img-fluid">');
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function readSkzURL(input) {
+    //alert('working...');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            console.log(e.target.result);
+            $('#blah').html('<img src="'+e.target.result+'" class="img-fluid skzprevimg">');
+        };
+        //console.log(input.files[0]);
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function generate_random_string(string_length){
+    let random_string = '';
+    let random_ascii;
+    for(let i = 0; i < string_length; i++) {
+        random_ascii = Math.floor((Math.random() * 25) + 97);
+        random_string += String.fromCharCode(random_ascii)
+    }
+    return random_string
+}
+
+function lastElement(array, n) {
+    if (array == null)
+        return void 0;
+    if (n == null)
+        return array[array.length - 1];
+    return array.slice(Math.max(array.length - n, 0));
+};
