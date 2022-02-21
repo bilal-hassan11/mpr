@@ -51,7 +51,7 @@
  <!-- sidebar part here -->
  <nav class="sidebar">
   <div class="logo d-flex justify-content-between">
-      <a href="index.html"><img src="{{ asset('user_assets/img/logo.png') }}" alt=""></a>
+      <a href="index.html"><img src="{{ asset('frontend_assets/images/newLogo.jfif') }}" alt=""></a>
       <div class="sidebar_close_icon d-lg-none">
           <i class="ti-close"></i>
       </div>
@@ -140,12 +140,7 @@
           <img src="{{ asset('user_assets/img/menu-icon/6.svg') }}" alt="">
           <span>My Bonus</span>
         </a>
-        <ul>
-            <li><a href="wow_animation.html">Animate</a></li>
-            <li><a href="Scroll_Reveal.html">Scroll Reveal</a></li>
-            <li><a href="tilt.html">Tilt Animation</a></li>
-            
-        </ul>
+        
       </li>
 
       <li class="">
@@ -156,26 +151,12 @@
         
       </li>
 
-      <li class="">
-        <a   class="has-arrow" href="#" aria-expanded="false">
-          <img src="{{ asset('user_assets/img/menu-icon/8.svg') }}" alt="">
-          <span>Tickets</span>
-        </a>
-        <ul>
-            <li><a href="data_table.html">Data Tables</a></li>
-            <li><a href="bootstrap_table.html">Grid Tables</a></li>
-        </ul>
-      </li>
-
+      
       <li class="">
         <a   class="has-arrow" href="#" aria-expanded="false">
           <img src="{{ asset('user_assets/img/menu-icon/8.svg') }}" alt="">
           <span>Referals</span>
         </a>
-        <ul>
-            <li><a href="data_table.html">Data Tables</a></li>
-            <li><a href="bootstrap_table.html">Grid Tables</a></li>
-        </ul>
       </li>
 
       <li class="">

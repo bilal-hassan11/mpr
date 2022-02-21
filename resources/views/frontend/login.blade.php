@@ -2,13 +2,13 @@
 
 @section('content')
 <!--=======Banner-Section Starts Here=======-->
-<section class="hero-section bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/about/1920x680-login.png">
+<section class="hero-section bg_img" data-background="{{ asset('frontend_assets/images/about/1920x680-login.png') }}">
     <div class="container">
         <div class="hero-content">
             <h1 class="title">Login</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="https://www.5stark.com">Home</a>
+                    <a href="{{ route('fronts.home') }}">Home</a>
                 </li>
                 <li>
                     Login

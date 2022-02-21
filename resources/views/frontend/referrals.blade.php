@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<section class="hero-section bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/about/referrals.png">
+<section class="hero-section bg_img" data-background="{{ asset('frontend_assets/images/about/referrals.png') }}">
     <div class="container">
         <div class="hero-content">
             <h1 class="title">Referrals</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="https://www.5stark.com">Home</a>
+                    <a href="{{ route('fronts.home') }}">Home</a>
                 </li>
                 <li>
                     Referrals
@@ -23,7 +23,7 @@
 <section class="affiliate-programe padding-top pt-max-lg-0">
     <div class="ball-3" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball4.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball4.png') }}" alt="balls">
     </div>
     <div class="container">
         <div class="row">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="affiliate-bottom">
                     <h6 class="title">Make money with 5Stark</h6>
-                    <a href="https://www.5stark.com/about" class="custom-button">
+                    <a href="{{ route('fronts.about') }}" class="custom-button">
                         learn more <i class="flaticon-right"></i>
                     </a>
                 </div>
@@ -116,7 +116,7 @@
             <div class="col-md-7 col-xl-6">
                 <div class="call-item text-center text-sm-left">
                     <div class="call-icon">
-                        <img src="https://www.5stark.com/public/assets/nt/assets/images/call/icon01.png" alt="call">
+                        <img src="{{ asset('frontend_assets/images/call/icon01.png') }}" alt="call">
                     </div>
                     <div class="call-content">
                         <h5 class="title">Happy To Get Off With Your Earnings, Start It Now</h5>
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="col-md-5 col-xl-6 text-center text-sm-left text-md-right">
-                <a href="https://www.5stark.com/register" class="custom-button">Start Now <i class="flaticon-right"></i></a>
+                <a href="{{ route('fronts.register') }}" class="custom-button">Start Now <i class="flaticon-right"></i></a>
             </div>
         </div>
     </div>
@@ -145,19 +145,19 @@
         <div class="row">
             <div class="col-lg-4 d-lg-block d-none">
                 <div class="total-thumb rtl">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/affiliate/total-1.png" alt="affiliate">
+                    <img src="{{ asset('frontend_assets/images/affiliate/total-1.png') }}" alt="affiliate">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="total-content">
                     <div class="total-bg">
-                        <img src="https://www.5stark.com/public/assets/nt/assets/images/affiliate/affiliate-bg2.png" alt="affiliate">
+                        <img src="{{ asset('frontend_assets/images/affiliate/affiliate-bg2.png') }}" alt="affiliate">
                     </div>
                     <div class="tot-wrapper">
                         <div class="tot-area">
                             <div class="tot-item">
                                 <div class="tot-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/affiliate/tot1.png" alt="affiliate">
+                                    <img src="{{ asset('frontend_assets/images/affiliate/tot1.png') }}" alt="affiliate">
                                 </div>
                                 <div class="tot-content">
                                     <div class="counter--item">
@@ -172,7 +172,7 @@
                             </div>
                             <div class="tot-item">
                                 <div class="tot-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/affiliate/tot3.png" alt="affiliate">
+                                    <img src="{{ asset('frontend_assets/images/affiliate/tot3.png') }}" alt="affiliate">
                                 </div>
                                 <div class="tot-content">
                                     <div class="counter--item">
@@ -190,7 +190,7 @@
                         <div class="tot-area">
                             <div class="tot-item">
                                 <div class="tot-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/affiliate/averageInvestment.png" alt="affiliate">
+                                    <img src="{{ asset('frontend_assets/images/affiliate/averageInvestment.png') }}" alt="affiliate">
                                 </div>
                                 <div class="tot-content">
                                     <div class="counter--item">
@@ -215,14 +215,14 @@
 
 
 <!-- ==========How-Section Starts Here========== -->
-<section class="how-section bg_img padding-top padding-bottom pt-max-md-0" data-background="https://www.5stark.com/public/assets/nt/assets/images/affiliate/affiliate-bg.png">
+<section class="how-section bg_img padding-top padding-bottom pt-max-md-0" data-background="{{ asset('frontend_assets/images/affiliate/affiliate-bg.png') }}">
     <div class="ball-3" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group9.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group9.png') }}" alt="balls">
     </div>
     <div class="ball-2" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group10.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group10.png') }}" alt="balls">
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -241,7 +241,7 @@
                 <div class="how-item">
                     <div class="how-thumb-area">
                         <div class="how-thumb">
-                            <img src="https://www.5stark.com/public/assets/nt/assets/images/how/how4.png" alt="how">
+                            <img src="{{ asset('frontend_assets/images/profit/how4.png') }}" alt="how">
                         </div>
                     </div>
                     <div class="how-content">
@@ -253,7 +253,7 @@
                 <div class="how-item active">
                     <div class="how-thumb-area">
                         <div class="how-thumb">
-                            <img src="https://www.5stark.com/public/assets/nt/assets/images/how/how5.png" alt="how">
+                            <img src="{{ asset('frontend_assets/images/profit/how5.png') }}" alt="how">
                         </div>
                     </div>
                     <div class="how-content">
@@ -265,7 +265,7 @@
                 <div class="how-item">
                     <div class="how-thumb-area">
                         <div class="how-thumb">
-                            <img src="https://www.5stark.com/public/assets/nt/assets/images/how/how6.png" alt="how">
+                            <img src="{{ asset('frontend_assets/images/profit/how6.png') }}" alt="how">
                         </div>
                     </div>
                     <div class="how-content">
@@ -282,7 +282,7 @@
 <!-- ==========Why-Affiliate-Section Starts Here========== -->
 <section class="why-affiliate-section padding-bottom padding-top pt-max-lg-0">
     <div class="why--thumb">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/why/how.png" alt="why">
+        <img src="{{ asset('frontend_assets/images/profit/how.png') }}" alt="why">
     </div>
     <div class="container">
         <div class="row align-items-end">
@@ -299,7 +299,7 @@
                         <div class="why-item">
                             <div class="why-inner">
                                 <div class="why-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/why/JoiningFree.png" alt="why">
+                                    <img src="{{ asset('frontend_assets/images/profit/JoiningFree.png') }}" alt="why">
                                 </div>
                                 <div class="why-content">
                                     <h6 class="title">Joining free </h6>
@@ -309,7 +309,7 @@
                         <div class="why-item">
                             <div class="why-inner">
                                 <div class="why-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/why/InstantPayout.png" alt="why">
+                                    <img src="{{ asset('frontend_assets/images/profit/InstantPayout.png') }}" alt="why">
                                 </div>
                                 <div class="why-content">
                                     <h6 class="title">Instant Payout</h6>
@@ -319,7 +319,7 @@
                         <div class="why-item">
                             <div class="why-inner">
                                 <div class="why-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/why/purformanceBonuses.png" alt="why">
+                                    <img src="{{ asset('frontend_assets/images/profit/purformanceBonuses.png') }}" alt="why">
                                 </div>
                                 <div class="why-content">
                                     <h6 class="title">Performance Bonues</h6>
@@ -329,7 +329,7 @@
                         <div class="why-item">
                             <div class="why-inner">
                                 <div class="why-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/why/UnlimitedAffiliates.png" alt="why">
+                                    <img src="{{ asset('frontend_assets/images/profit/UnlimitedAffiliates.png') }}" alt="why">
                                 </div>
                                 <div class="why-content">
                                     <h6 class="title">Unlimited Referrals</h6>
@@ -337,7 +337,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.5stark.com/register" class="custom-button">join Now!</a>
+                    <a href="{{ route('fronts.register') }}" class="custom-button">join Now!</a>
                 </div>
             </div>
         </div>

@@ -20,14 +20,14 @@
 
 
 <!--=======Feature-Section Starts Here=======-->
-<section class="faq-section padding-top padding-bottom bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/feature/feature-bg.png">
+<section class="faq-section padding-top padding-bottom bg_img" data-background="{{ asset('frontend_assets/images/feature/feature-bg.png') }}">
     <div class="ball-group-1" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group5.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group5.png') }}" alt="balls">
     </div>
     <div class="ball-group-2 rtl" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group6.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group6.png') }}" alt="balls">
     </div>
     <div class="container">
         <div class="row justify-content-center">

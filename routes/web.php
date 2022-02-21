@@ -84,6 +84,9 @@ Route::namespace('Frontend')->name('fronts.')->group(function(){
 
     Route::post('/registration','HomeController@register_user')->name('registeration');
     
+    Route::post('/check',[loginController::class, 'check'])->name('check');
+    Route::post('/logout',[loginController::class,'logout'])->name('logout');
+    
     Route::get('/','HomeController@index')->name('home');
     Route::get('/about','HomeController@about')->name('about');
     Route::get('/contact','HomeController@contact')->name('contact');

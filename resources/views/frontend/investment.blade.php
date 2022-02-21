@@ -2,13 +2,13 @@
 
 @section('content')
 <!--=======Banner-Section Starts Here=======-->
-<section class="hero-section bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/about/plans.png">
+<section class="hero-section bg_img" data-background="{{ asset('frontend_assets/images/about/plans.png') }}">
     <div class="container">
         <div class="hero-content">
             <h1 class="title">Investment Plans</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="https://www.5stark.com">Home</a>
+                    <a href="{{ route('fronts.home') }}">Home</a>
                 </li>
                 <li>
                     Investment Plans
@@ -24,11 +24,11 @@
 <section class="offer-section padding-top padding-bottom">
     <div class="ball-group-1" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group1.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group1.png') }}" alt="balls">
     </div>
     <div class="ball-group-2" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group2.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group2.png') }}" alt="balls">
     </div>
             <div class="container">
             <div class="row justify-content-center">
@@ -56,7 +56,7 @@
                             <span class="bal-shape"></span>
                             <div class="item first">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer1.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer1.png') }}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Deposit</h5>
@@ -79,7 +79,7 @@
                             <span class="bal-shape"></span>
                             <div class="item">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer2.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer2.png') }}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Commission </h5>
@@ -95,7 +95,7 @@
                                     </span>
                         <span style="display: block">
                                                                             </span>-->
-                            <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
+                            <a href="{{ route('fronts.login') }}" class="custom-button">invest now</a>
                         </div>
                     </div>
                                     <div class="offer-item">
@@ -111,7 +111,7 @@
                             <span class="bal-shape"></span>
                             <div class="item first">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer1.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer1.png') }}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Deposit</h5>
@@ -134,7 +134,7 @@
                             <span class="bal-shape"></span>
                             <div class="item">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer2.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer2.png') }}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Commission </h5>
@@ -150,7 +150,7 @@
                                     </span>
                         <span style="display: block">
                                                                             </span>-->
-                            <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
+                            <a href="{{ route('fronts.login') }}" class="custom-button">invest now</a>
                         </div>
                     </div>
                                     <div class="offer-item">
@@ -166,7 +166,7 @@
                             <span class="bal-shape"></span>
                             <div class="item first">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer1.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer1.png')}}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Deposit</h5>
@@ -189,7 +189,7 @@
                             <span class="bal-shape"></span>
                             <div class="item">
                                 <div class="item-thumb">
-                                    <img src="https://www.5stark.com/public/assets/nt/assets/images/offer/offer2.png" alt="offer">
+                                    <img src="{{ asset('frontend_assets/images/offer/offer2.png') }}" alt="offer">
                                 </div>
                                 <div class="item-content">
                                     <h5 class="title">Commission </h5>
@@ -205,7 +205,7 @@
                                     </span>
                         <span style="display: block">
                                                                             </span>-->
-                            <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
+                            <a href="{{ route('fronts.login') }}" class="custom-button">invest now</a>
                         </div>
                     </div>
                             </div>
@@ -229,31 +229,31 @@
         </div>
     </div>
     <div class="container-fluid p-0">
-        <div class="profit-bg bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/profit/profit-bg.png">
+        <div class="profit-bg bg_img" data-background="{{ asset('frontend_assets/images/profit/profit-bg.jfif') }}">
             <div class="animation-group">
                 <div class="platform">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/platform.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/platform.png') }}" alt="profit">
                 </div>
                 <div class="light">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/light.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/light.png') }}" alt="profit">
                 </div>
                 <div class="coin-1 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin6.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin6.png') }}" alt="profit">
                 </div>
                 <div class="coin-2 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin2.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin2.png') }}" alt="profit">
                 </div>
                 <div class="coin-3 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin3.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin3.png') }}" alt="profit">
                 </div>
                 <div class="coin-4 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin4.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin4.png') }}" alt="profit">
                 </div>
                 <div class="coin-5 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin5.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin5.png') }}" alt="profit">
                 </div>
                 <div class="coin-6 wow fadeOutDown" data-wow-delay="1s">
-                    <img src="https://www.5stark.com/public/assets/nt/assets/images/profit/coin1.png" alt="profit">
+                    <img src="{{ asset('frontend_assets/images/profit/coin1.jfif') }}" alt="profit">
                 </div>
             </div>
         </div>
@@ -299,14 +299,14 @@
 
 
 <!--=======Feature-Section Starts Here=======-->
-<section class="faq-section padding-top padding-bottom bg_img" data-background="https://www.5stark.com/public/assets/nt/assets/images/feature/feature-bg.png">
+<section class="faq-section padding-top padding-bottom bg_img" data-background="{{ asset('frontend_assets/images/feature/feature-bg.png') }}">
     <div class="ball-group-1" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group5.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group5.png') }}" alt="balls">
     </div>
     <div class="ball-group-2 rtl" data-paroller-factor="0.30" data-paroller-factor-lg="-0.30"
          data-paroller-type="foreground" data-paroller-direction="horizontal">
-        <img src="https://www.5stark.com/public/assets/nt/assets/images/balls/ball-group6.png" alt="balls">
+        <img src="{{ asset('frontend_assets/images/balls/ball-group6.png') }}" alt="balls">
     </div>
     <div class="container">
         <div class="row justify-content-center">
