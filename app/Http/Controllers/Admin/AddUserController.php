@@ -26,7 +26,7 @@ class AddUserController extends Controller
             'user_name'         => ['required','max:255'],
             'email'             => ['required','max:255','unique:users'],
             'password'          => ['required','max:255'],
-            'referal_id'        => ['nullable'],
+            'referal_id'        => ['nullable','exists:users,referal_id'],
             'user_status'       => ['required','in:user,admin'],
             'account_status'    => ['required','in:enable,disable'],
             'phone_no'          => ['required','max:50']
@@ -41,15 +41,15 @@ class AddUserController extends Controller
         $user = new User;
         $user->referal_id = Str::random(10);
         $user->username = $req->user_name;
-        $user->email = $req->user_name;
+        $user->email = $req->email;
         $user->password = \Hash::make($req->password);
         $user->phone_no = $req->phone_no;
-        $user->referance_id = $req->referance_id;
+        $user->referance_id = $req->referal_id;
         $user->user_status = $req->user_status;
         $user->account_status = $req->account_status;
         $user->save();
 
-        return respones()->json([
+        return response()->json([
             'success'   => 'User Added Successfully',
             'reload'    => TRUE
         ]);
