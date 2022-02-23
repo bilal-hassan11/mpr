@@ -52,7 +52,8 @@ class loginController extends Controller
 
     public function logout(Request $request){
     
-        Auth::guard('web')->logout();
+        // Auth::guard('web')->logout();
+        Auth::logout();
         
         return redirect()->route('admin.login');
     }

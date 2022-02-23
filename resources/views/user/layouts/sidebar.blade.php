@@ -160,10 +160,18 @@
       </li>
 
       <li class="">
-        <a   class="has-arrow" href="#" id="logout_user" aria-expanded="false">
-          <img src="{{ asset('user_assets/img/menu-icon/9.svg') }}" alt="">
-          <span>Log Out</span>
-        </a>
+        @if(@Auth::User()->user_status == 'user')
+          <a   class="has-arrow" href="{{ route('users.logout') }}" id="logout_user" aria-expanded="false">
+            <img src="{{ asset('user_assets/img/menu-icon/9.svg') }}" alt="">
+            <span>Log Out</span>
+          </a>
+        @else 
+          <a   class="has-arrow" href="{{ route('users.logout') }}" id="logout_user" aria-expanded="false">
+            <img src="{{ asset('user_assets/img/menu-icon/9.svg') }}" alt="">
+            <span>Log Out</span>
+          </a>
+
+        @endif
        
       </li>
 

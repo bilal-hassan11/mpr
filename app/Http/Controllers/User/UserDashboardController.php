@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserDashboardController extends Controller
 {
     public function index(){
-    
+
         $data = array(
             'title' => 'Dashboard',
             'page_title' => 'Dashbord',
@@ -25,5 +25,20 @@ class UserDashboardController extends Controller
             'page_title'    => 'Dashbord'
         );
         return view('user.dashboard.profile')->with($data);
+    }
+    function login(){
+
+        $data = array(
+            'title' => 'Login',
+           
+        );
+        return view('user.dashboard.login')->with($data);
+    }
+
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect()->route('users.login');
     }
 }

@@ -17,15 +17,15 @@ use App\Http\controller\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.dashboard.login');
-});
+// Route::get('/', function () {
+//     return view('user.dashboard.login');
+// });
 
-
+Route::get('/admin',[loginController::class, 'login'])->name('admin.login');
 //admin routes
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
-    Route::get('/',[loginController::class, 'login'])->name('login');
+Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->group(function(){
 
+    Route::get('/logout','loginController@logout')->name('logout');
     //add user routes
     Route::prefix('/user')->name('users.')->group(function(){
         Route::get('/add','AddUserController@addUser')->name('add');
@@ -59,10 +59,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::post('/check',[loginController::class, 'check'])->name('check');
     Route::post('/logout',[loginController::class,'logout'])->name('logout');
+    Route::get('/login','UserDashBoardController@login')->name('login');
     
     Route::middleware('UserAuth')->group(function(){
         Route::get('/','UserDashBoardController@index')->name('dashboard');
         Route::get('/Profile','UserDashBoardController@profile')->name('profile');
+        Route::get('/logout','UserDashBoardController@logout')->name('logout');
     });
 
     //user packages routes
