@@ -18,8 +18,7 @@ class loginController extends Controller
     }
 
     function check(Request $request){
-        //dd($request->all());
-        //Validate Inputs
+
          $request->validate([
             'email'=>'required|email|exists:users,email',
             'password'=>'required|min:5|max:30'
@@ -32,7 +31,12 @@ class loginController extends Controller
          
          if( Auth::guard('web')->attempt($creds) ){
 
-            return redirect()->route('users.dashboard');
+            if(Auth::user()->user_status == 'admin'){
+                return redirect()->route('admin.index');
+            }else{
+                 return redirect()->route('users.dashboard');
+
+            }
          }else{
              return redirect()->route('admin.login')->with('fail','You have to Provide Correct Email & Password!');
          }
@@ -52,10 +56,17 @@ class loginController extends Controller
 
     public function logout(Request $request){
     
-        // Auth::guard('web')->logout();
-        Auth::logout();
-        
-        return redirect()->route('admin.login');
+        // // Auth::guard('web')->logout();
+        // Auth::logout();
+        // return redirect()->route('admin.login');
+        if(Auth::user()->user_status == 'admin'){
+            Auth::logout();
+            return redirect()->route('admin.login');
+        }else{
+            Auth::logout();
+            return redirect()->route('users.login');
+        }
     }
+
 
 }

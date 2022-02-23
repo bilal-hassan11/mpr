@@ -17,12 +17,14 @@ class UserAuth
      */
     public function handle(Request $request, Closure $next)
     {   
-        if(!Auth::check()){
-            // return redirect()->action('User\UserDashboardController@login');
-            return redirect('/users/login');
-        }
+        // if(!Auth::check()){
+        //     return redirect('/users/login');
+        // }
         
-        return $next($request);
+        if(Auth::check() && Auth::user()->user_status == 'user'){
+            return $next($request);
+        }
+        return redirect('/users/login');
         
     }
 }

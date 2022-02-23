@@ -59,39 +59,21 @@
 
   <ul id="sidebar_menu">
       <li class="">
+        @if(@Auth::User()->user_status == 'admin')
+        @else
         <a class="has-arrow"  href="{{ route('users.dashboard') }}"  aria-expanded="false">
-        <!-- <i class="fas fa-th"></i> -->
         <img src="{{ asset('user_assets/img/menu-icon/dashboard.svg') }}" alt="">
           <span>Dashboard</span>
         </a>
-        <!-- <ul>
-          <li><a  href="index.html">Directory</a></li>
-          <li><a  href="index_2.html">Default</a></li>
-        </ul> -->
-
+        @endif
       </li>
       <li class="">
         <a   class="has-arrow" href="{{ route('users.profile') }}" aria-expanded="false">
           <img src="{{ asset('user_assets/img/menu-icon/2.svg') }}" alt="">
           <span>My Profile</span>
         </a>
-        <!-- <ul>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="resister.html">Register</a></li>
-          <li><a href="error_400.html">Error 404</a></li>
-          <li><a href="error_500.html">Error 500</a></li>
-          <li><a href="forgot_pass.html">Forgot Password</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul> -->
       </li>
 
-      <li class="">
-        <a   class="has-arrow" href="{{ route('admin.users.cashbox') }}" aria-expanded="false">
-          <img src="{{ asset('user_assets/img/menu-icon/3.svg') }}" alt="">
-          <span>Cash Box</span>
-        </a>
-        
-      </li>
      
       @if(@Auth::User()->user_status == 'admin')
       <li class="">
@@ -120,15 +102,15 @@
         </li>
       @endif
       <li class="">
-        <a   class="has-arrow" href="{{ route('admin.users.deposite') }}" aria-expanded="false">
+        <a   class="has-arrow" href="{{ route('users.user_packages.view') }}" aria-expanded="false">
           <img src="{{ asset('user_assets/img/menu-icon/4.svg') }}" alt="">
-          <span>Deposite</span>
+          <span>My Packages</span>
         </a>
         
       </li>
 
       <li class="">
-        <a   class="has-arrow" href="{{ route('admin.users.profit') }}" aria-expanded="false">
+        <a   class="has-arrow" href="{{ route('users.user_profits.view') }}" aria-expanded="false">
           <img src="{{ asset('user_assets/img/menu-icon/5.svg') }}" alt="">
           <span>My Profit</span>
         </a>
@@ -143,13 +125,6 @@
         
       </li>
 
-      <li class="">
-        <a   class="has-arrow" href="#" aria-expanded="false">
-          <img src="{{ asset('user_assets/img/menu-icon/7.svg') }}" alt="">
-          <span>Withdraw</span>
-        </a>
-        
-      </li>
 
       
       <li class="">
@@ -166,7 +141,7 @@
             <span>Log Out</span>
           </a>
         @else 
-          <a   class="has-arrow" href="{{ route('users.logout') }}" id="logout_user" aria-expanded="false">
+          <a   class="has-arrow" href="{{ route('admin.logout') }}" id="logout_user" aria-expanded="false">
             <img src="{{ asset('user_assets/img/menu-icon/9.svg') }}" alt="">
             <span>Log Out</span>
           </a>
@@ -175,7 +150,7 @@
        
       </li>
 
-      <li class="">
+      {{-- <li class="">
         <a   class="has-arrow" href="#" aria-expanded="false">
           <img src="{{ asset('user_assets/img/menu-icon/3.svg') }}" alt="">
           <span>Package</span>
@@ -185,7 +160,7 @@
           <li><a href="{{ route('users.user_packages.view') }}">View Packages</a></li>
           <li><a href="{{ route('users.user_profits.view') }}">Profit</a></li>
         </ul>
-      </li>
+      </li> --}}
 
 
     </ul>

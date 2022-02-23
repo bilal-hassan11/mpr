@@ -23,9 +23,10 @@ use App\Http\controller\AdminController;
 
 Route::get('/admin',[loginController::class, 'login'])->name('admin.login');
 //admin routes
-Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->group(function(){
-
-    Route::get('/logout','loginController@logout')->name('logout');
+Route::namespace('Admin')->middleware('AdminAuth')->prefix('admin')->name('admin.')->group(function(){
+    //admin dashboard route
+    Route::get('/dashboard','DashboardController@index')->name('index');
+    Route::get('/logout','DashboardController@adminLogout')->name('logout');
     //add user routes
     Route::prefix('/user')->name('users.')->group(function(){
         Route::get('/add','AddUserController@addUser')->name('add');
@@ -58,7 +59,7 @@ Route::namespace('Admin')->middleware('auth')->prefix('admin')->name('admin.')->
 //user dashborad routes
 Route::namespace('User')->prefix('users')->name('users.')->group(function(){
     Route::post('/check',[loginController::class, 'check'])->name('check');
-    Route::post('/logout',[loginController::class,'logout'])->name('logout');
+    // Route::post('/logout',[loginController::class,'logout'])->name('logout');
     Route::get('/login','UserDashBoardController@login')->name('login');
     
     Route::middleware('UserAuth')->group(function(){

@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\UserPackage;
 use App\Models\UserProfit;
-
-class UserDashboardController extends Controller
+use Auth;
+class DashboardController extends Controller
 {
     public function index(){
-
         $first_day_this_month = date('Y-m-20');
         $last_day_this_month  = date('Y-m-t');
-
         $data = array(
             'title' => 'Dashboard',
             'page_title' => 'Dashbord',
@@ -27,27 +24,8 @@ class UserDashboardController extends Controller
         return view('user.dashboard.index')->with($data);
     }
 
-    public function profile(){
-        
-        $data = array(
-            'title' => 'Dashboard',
-            'page_title'    => 'Dashbord'
-        );
-        return view('user.dashboard.profile')->with($data);
-    }
-    function login(){
-
-        $data = array(
-            'title' => 'Login',
-           
-        );
-        return view('user.dashboard.login')->with($data);
-    }
-
-
-    public function logout(){
+    public function adminLogout(Request $request){
         Auth::logout();
-        return redirect()->route('users.login');
-        
+        return redirect('/admin');
     }
 }
