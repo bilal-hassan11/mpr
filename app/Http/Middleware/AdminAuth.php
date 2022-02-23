@@ -19,6 +19,6 @@ class AdminAuth
         if(Auth::check() && Auth::user()->user_status == 'admin'){
             return $next($request);
         }
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.login');
     }
 }

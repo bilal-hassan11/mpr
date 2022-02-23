@@ -35,7 +35,6 @@ class loginController extends Controller
                 return redirect()->route('admin.index');
             }else{
                  return redirect()->route('users.dashboard');
-
             }
          }else{
              return redirect()->route('admin.login')->with('fail','You have to Provide Correct Email & Password!');
