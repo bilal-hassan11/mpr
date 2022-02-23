@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Package;
 
 class HomeController extends Controller
 {
     public function index(){
         $data = array(
-            'title'  =>  'Home'  
+            'title'  =>  'Home',
+            'packages'  => Package::get(),  
         );
 
         return view('frontend.index')->with($data);
@@ -17,7 +19,7 @@ class HomeController extends Controller
 
     public function about(){
         $data = array(
-            'title'  => 'About'  
+            'title'  => 'About',
         );
         return view('frontend.about')->with($data);;
     }
@@ -38,7 +40,8 @@ class HomeController extends Controller
 
     public function investment(){
         $data = array(
-            'title'  => 'Investment'  
+            'title'  => 'Investment',
+            'packages'  => Package::get(),    
         );
         return view('frontend.investment')->with($data);;
     }

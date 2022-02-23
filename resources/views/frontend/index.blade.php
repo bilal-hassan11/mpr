@@ -381,13 +381,14 @@
                 </div>
             </div>
             <div class="offer-wrapper">
-                                <div class="offer-item">
+                @foreach($packages AS $package)
+                <div class="offer-item">
                     <div class="offer-header">
                         <h3 class="title">
                             7% to 12%                        </h3>
                         <span>
                             <b>
-                                Basic Plan                            </b>
+                                {{ $package->package_title }}                           </b>
                         </span>
                     </div>
                     <div class="offer-body">
@@ -400,17 +401,17 @@
                                 <h5 class="title">Deposit</h5>
                                 <h5 class="subtitle">
                                     <span class="min">$
-                                    100                                    </span>
+                                    {{ $package->min_investment_amount }}                                   </span>
                                     <span class="to">to</span>
                                     <span class="max">$
-                                    999                                    </span>
+                                    {{ $package->max_investment_amount }}                                   </span>
                                 </h5>
                                 <div class="">
                                         <span>
                                          Activation Charges
                                     </span>
                                     <span>
-                                        $10                                    </span>
+                                        ${{ $package->activation_charges }}                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +423,7 @@
                             <div class="item-content">
                                 <h5 class="title">Commission </h5>
                                 <h5 class="subtitle">
-                                    2 Levels
+                                    {{ $package->comission_level }} Levels
                                 </h5>
                             </div>
                         </div>
@@ -436,116 +437,8 @@
                         <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
                     </div>
                 </div>
-                                <div class="offer-item">
-                    <div class="offer-header">
-                        <h3 class="title">
-                            7% to 12%                        </h3>
-                        <span>
-                            <b>
-                                Silver plan                            </b>
-                        </span>
-                    </div>
-                    <div class="offer-body">
-                        <span class="bal-shape"></span>
-                        <div class="item first">
-                            <div class="item-thumb">
-                                <img src="{{ asset('frontend_assets/images/offer/offer1.png') }}" alt="offer">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="title">Deposit</h5>
-                                <h5 class="subtitle">
-                                    <span class="min">$
-                                    1000                                    </span>
-                                    <span class="to">to</span>
-                                    <span class="max">$
-                                    2999                                    </span>
-                                </h5>
-                                <div class="">
-                                        <span>
-                                         Activation Charges
-                                    </span>
-                                    <span>
-                                        $10                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="bal-shape"></span>
-                        <div class="item">
-                            <div class="item-thumb">
-                                <img src="{{ asset('frontend_assets/images/offer/offer2.png') }}" alt="offer">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="title">Commission </h5>
-                                <h5 class="subtitle">
-                                    4 Levels
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="offer-footer">
-                        <!--<span style="display: block">
-                                         Activation Charges
-                                    </span>
-                        <span style="display: block">
-                                                                            </span>-->
-                        <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
-                    </div>
-                </div>
-                                <div class="offer-item">
-                    <div class="offer-header">
-                        <h3 class="title">
-                            7% to 12%                        </h3>
-                        <span>
-                            <b>
-                                Gold plan                            </b>
-                        </span>
-                    </div>
-                    <div class="offer-body">
-                        <span class="bal-shape"></span>
-                        <div class="item first">
-                            <div class="item-thumb">
-                                <img src="{{ asset('frontend_assets/images/offer/offer1.png') }}" alt="offer">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="title">Deposit</h5>
-                                <h5 class="subtitle">
-                                    <span class="min">$
-                                    3000                                    </span>
-                                    <span class="to">to</span>
-                                    <span class="max">$
-                                    10000000                                    </span>
-                                </h5>
-                                <div class="">
-                                        <span>
-                                         Activation Charges
-                                    </span>
-                                    <span>
-                                        $10                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="bal-shape"></span>
-                        <div class="item">
-                            <div class="item-thumb">
-                                <img src="{{ asset('frontend_assets/images/offer/offer2.png') }}" alt="offer">
-                            </div>
-                            <div class="item-content">
-                                <h5 class="title">Commission </h5>
-                                <h5 class="subtitle">
-                                    6 Levels
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="offer-footer">
-                        <!--<span style="display: block">
-                                         Activation Charges
-                                    </span>
-                        <span style="display: block">
-                                                                            </span>-->
-                        <a href="https://www.5stark.com/login" class="custom-button">invest now</a>
-                    </div>
-                </div>
+                @endforeach
+                
                             </div>
         </div>
     </section>
